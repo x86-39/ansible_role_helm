@@ -1,0 +1,15 @@
+---
+- name: Install from package
+  when: helm_install_with_package
+  block:
+    - name: Install Helm
+      become: true
+      ansible.builtin.dnf:
+        name: helm
+        state: present
+
+- name: Install from archive
+  when: not helm_install_with_package
+  ansible.builtin.include_tasks: setup/default.yml
+
+...

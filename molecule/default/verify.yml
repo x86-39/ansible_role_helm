@@ -5,8 +5,19 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Example assertion
-      ansible.builtin.assert:
-        that: true
+    - name: Check if /usr/local/bin/helm exists
+      ansible.builtin.stat:
+        path: /usr/local/bin/helm
+      register: helm_exists
+
+    - name: Check if /usr/bin/helm exists
+      ansible.builtin.stat:
+        path: /usr/bin/helm
+      register: helm_exists
+
+    - name: Fail if either /usr/local/bin/helm or /usr/bin/helm does not exist
+      ansible.builtin.fail:
+        msg: "Helm is not installed"
+      when: not helm_exists.stat.exists and not helm_exists.stat.exists
 
 ...

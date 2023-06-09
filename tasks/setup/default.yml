@@ -1,7 +1,28 @@
 ---
-- name: Failover if no platform specific tasks are found
-  ansible.builtin.fail:
-    msg: "Your platform is not supported"
-  when: true
+- name: Download helm archive
+  ansible.builtin.get_url:
+    url: "https://get.helm.sh/helm-{{ helm_archive_version }}-linux-{{ _helm_arch_mapping[ansible_facts.architecture] }}.tar.gz"
+    dest: /tmp/helm.tar.gz
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Extract helm archive
+  ansible.builtin.unarchive:
+    src: /tmp/helm.tar.gz
+    dest: /tmp
+    remote_src: true
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Move helm binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: /tmp/linux-{{ _helm_arch_mapping[ansible_facts.architecture] }}/helm
+    dest: /usr/local/bin/helm
+    owner: root
+    group: root
+    mode: '0755'
+    remote_src: true
 
 ...

@@ -1,3 +1,5 @@
 ---
+helm_install_with_package: true
+helm_archive_version: "v3.12.0"
 
 ...
