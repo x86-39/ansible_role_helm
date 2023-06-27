@@ -1,8 +1,10 @@
 ---
-- name: Install unzip
+- name: Install archive dependencies
   become: true
   community.general.zypper:
-    name: unzip
+    name:
+      - unzip
+      - tar
     state: present
 
 - name: Include default tasks
