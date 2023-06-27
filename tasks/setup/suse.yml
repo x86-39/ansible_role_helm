@@ -1,0 +1,11 @@
+---
+- name: Install unzip
+  become: true
+  community.general.zypper:
+    name: unzip
+    state: present
+
+- name: Include default tasks
+  ansible.builtin.include_tasks: setup/default.yml
+
+...

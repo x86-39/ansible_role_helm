@@ -17,6 +17,7 @@
     mode: '0755'
 
 - name: Move helm binary to /usr/local/bin
+  become: true
   ansible.builtin.copy:
     src: /tmp/linux-{{ _helm_arch_mapping[ansible_facts.architecture] }}/helm
     dest: /usr/local/bin/helm
