@@ -3,7 +3,7 @@
   become: true
   community.general.zypper:
     name:
-      - unzip
+      - gzip
       - tar
     state: present
 
