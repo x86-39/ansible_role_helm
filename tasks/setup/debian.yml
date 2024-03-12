@@ -14,7 +14,7 @@
     - name: Add Helm apt repository
       become: true
       ansible.builtin.apt_repository:
-        repo: "deb [arch={{ _helm_arch_mapping[ansible_facts.architecture] }}
+        repo: "deb [arch={{ helm_arch_mapping[ansible_facts.architecture] }}
           signed-by=/usr/share/keyrings/helm.asc] https://baltocdn.com/helm/stable/debian/ all main"
         state: present
         filename: helm-stable-debian
