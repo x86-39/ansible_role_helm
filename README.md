@@ -1,21 +1,21 @@
 Ansible Role Helm
 =========
 
-[![Molecule Test](https://github.com/diademiemi/ansible_role_helm/actions/workflows/molecule.yml/badge.svg)](https://github.com/diademiemi/ansible_role_helm/actions/workflows/molecule.yml)
+[![Molecule Test](https://github.com/x86-39/ansible_role_helm/actions/workflows/molecule.yml/badge.svg)](https://github.com/x86-39/ansible_role_helm/actions/workflows/molecule.yml)
 
 This is an Ansible role to install and [helm](https://helm.sh).
 
 Requirements
 ------------
 These platforms are supported:
-- Ubuntu 20.04
-- Ubuntu 22.04
-- Debian 11
-- Debian 12
-- EL 8 (Tested on Rocky Linux 8)
-- EL 9 (Tested on Rocky Linux 9)
-- Fedora 40
-- openSUSE Leap 15.5
+These platforms are supported:
+- Ubuntu 22.04  
+- Ubuntu 24.04  
+- Debian 12  
+- EL 9 (Tested on Rocky Linux 9)  
+- EL 10 (Tested on Rocky Linux 10)  
+- Fedora 42  
+- openSUSE Leap 16.0 (BETA, but I'm targeting this)  
 
 <!--
 - List hardware requirements here  
@@ -27,7 +27,7 @@ Role Variables
 Variable | Default | Description
 --- | --- | ---
 `helm_install_with_package` | `true` | Whether to install helm with the package manager when available. Falls back to archive installation if not available.
-`helm_archive_version` | `v3.12.0` | Version of helm to install when installing from archive
+`helm_archive_version` | `v3.17.4` | Version of helm to install when installing from archive
 <!--
 `variable` | `default` | Variable example
 `long_variable` | See [defaults/main.yml](./defaults/main.yml) | Variable referring to defaults
@@ -43,8 +43,8 @@ Example Playbook
 ----------------
 
 ```yaml
-    - role: "diademiemi.helm"
-      tags: ['diademiemi', 'helm', 'setup']    ```
+    - role: "x86_39.helm"
+      tags: ['x86_39', 'helm', 'setup']
 
 ```
 
@@ -56,7 +56,7 @@ MIT
 Author Information
 ------------------
 
-- diademiemi (@diademiemi)
+- Jasmijn Emilia Rosalina Knoope (@x86-39)
 
 Role Testing
 ------------

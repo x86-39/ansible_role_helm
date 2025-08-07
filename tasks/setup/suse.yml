@@ -1,13 +1,25 @@
 ---
-- name: Install archive dependencies
-  become: true
-  community.general.zypper:
-    name:
-      - gzip
-      - tar
-    state: present
+- name: Install from package
+  when: helm_install_with_package
+  block:
+    - name: Install Helm
+      become: true
+      community.general.zypper:
+        name: helm
+        state: present
 
-- name: Include default tasks
-  ansible.builtin.include_tasks: setup/default.yml
+- name: Install from archive
+  when: not helm_install_with_package
+  block:
+    - name: Install archive dependencies
+      become: true
+      community.general.zypper:
+        name:
+          - gzip
+          - tar
+        state: present
+
+    - name: Include default tasks
+      ansible.builtin.include_tasks: setup/default.yml
 
 ...
